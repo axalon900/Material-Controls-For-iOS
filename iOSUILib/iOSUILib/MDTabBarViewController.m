@@ -83,7 +83,7 @@
   NSDictionary *viewsDictionary =
       NSDictionaryOfVariableBindings(parentView, _tabBar, pageControllerView);
 
-  NSDictionary *metricsDictionary = @{ @"tabHeight" : @kMDTabBarHeight };
+  NSDictionary *metricsDictionary = @{ @"tabHeight" : @([MDTabBar defaultTabBarHeight]) };
 
   [self.view addConstraints:[NSLayoutConstraint
                                 constraintsWithVisualFormat:@"V:|-0-[_tabBar(=="
@@ -297,7 +297,7 @@
           selectedTab.frame.size.width + xDriff / scrollViewWidth * widthDiff;
 
       CGRect frame =
-          CGRectMake(newOriginX, kMDTabBarHeight - kMDIndicatorHeight, newWidth,
+          CGRectMake(newOriginX, [MDTabBar defaultTabBarHeight] - kMDIndicatorHeight, newWidth,
                      kMDIndicatorHeight);
       [_tabBar moveIndicatorToFrame:frame withAnimated:NO];
 
@@ -318,7 +318,7 @@
           selectedTab.frame.size.width + xDriff / scrollViewWidth * widthDiff;
 
       CGRect frame =
-          CGRectMake(newOriginX, kMDTabBarHeight - kMDIndicatorHeight, newWidth,
+          CGRectMake(newOriginX, [MDTabBar defaultTabBarHeight] - kMDIndicatorHeight, newWidth,
                      kMDIndicatorHeight);
       [_tabBar moveIndicatorToFrame:frame withAnimated:NO];
     }

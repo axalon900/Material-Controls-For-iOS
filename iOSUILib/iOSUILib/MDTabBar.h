@@ -22,7 +22,6 @@
 
 #import <UIKit/UIKit.h>
 
-#define kMDTabBarHeight 48
 #define kMDIndicatorHeight 2
 
 @class MDTabBar;
@@ -35,6 +34,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 IB_DESIGNABLE
 @interface MDTabBar : UIView
+
++ (NSUInteger)defaultTabBarHeight;
++ (void)setDefaultTabBarHeight:(NSUInteger)height;
 
 /// selected text color
 @property(null_unspecified, nonatomic) IBInspectable UIColor *textColor;

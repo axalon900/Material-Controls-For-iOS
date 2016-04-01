@@ -32,6 +32,7 @@
 
 @interface MDTabBar ()
 - (void)updateSelectedIndex:(NSInteger)selectedIndex;
+- (NSUInteger)suggestedHeight;
 @end
 
 #pragma mark - MDSegmentedControl
@@ -57,7 +58,7 @@
   if (self = [super init]) {
     _tabs = [NSMutableArray array];
     indicatorView = [[UIView alloc]
-        initWithFrame:CGRectMake(0, kMDTabBarHeight - kMDIndicatorHeight, 0,
+        initWithFrame:CGRectMake(0, bar.suggestedHeight - kMDIndicatorHeight, 0,
                                  kMDIndicatorHeight)];
     indicatorView.tag = NSIntegerMax;
     [self addSubview:indicatorView];
@@ -265,7 +266,7 @@
     }
   }
 
-  self.frame = CGRectMake(0, 0, segmentedControlWidth, kMDTabBarHeight);
+  self.frame = CGRectMake(0, 0, segmentedControlWidth, tabBar.suggestedHeight);
 }
 
 - (NSArray *)getSegmentList {
@@ -398,6 +399,18 @@
   UIScrollView *scrollView;
 }
 
+static NSUInteger s_defaultTabBarHeight = 48;
+
++ (NSUInteger)defaultTabBarHeight
+{
+  return s_defaultTabBarHeight;
+}
+
++ (void)setDefaultTabBarHeight:(NSUInteger)height
+{
+  s_defaultTabBarHeight = height;
+}
+
 - (instancetype)init {
   if (self = [super init]) {
     //    [self initContent];
@@ -431,13 +444,19 @@
 
 - (void)layoutSubviews {
   [super layoutSubviews];
-  scrollView.frame = CGRectMake(0, 0, self.bounds.size.width, kMDTabBarHeight);
+  scrollView.frame = CGRectMake(0, 0, self.bounds.size.width, [self suggestedHeight]);
   [scrollView setContentInset:UIEdgeInsetsMake(0, self.horizontalInset, 0,
                                                self.horizontalInset)];
   [scrollView setContentSize:segmentedControl.bounds.size];
 }
 
 #pragma mark Private methods
+
+- (NSUInteger)suggestedHeight
+{
+  return self.frame.size.height ?: [MDTabBar defaultTabBarHeight];
+}
+
 - (void)initContent {
   self.horizontalInset = 8;
 
