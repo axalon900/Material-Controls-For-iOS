@@ -58,8 +58,8 @@
   if (self = [super init]) {
     _tabs = [NSMutableArray array];
     indicatorView = [[UIView alloc]
-        initWithFrame:CGRectMake(0, bar.suggestedHeight - kMDIndicatorHeight, 0,
-                                 kMDIndicatorHeight)];
+        initWithFrame:CGRectMake(0, bar.suggestedHeight - [MDTabBar defaultIndicatorHeight], 0,
+                                 [MDTabBar defaultIndicatorHeight])];
     indicatorView.tag = NSIntegerMax;
     [self addSubview:indicatorView];
     [self addTarget:self
@@ -213,13 +213,13 @@
                      animations:^{
                        indicatorView.frame =
                            CGRectMake(frame.origin.x, self.bounds.size.height -
-                                                          kMDIndicatorHeight,
-                                      frame.size.width, kMDIndicatorHeight);
+                                                          [MDTabBar defaultIndicatorHeight],
+                                      frame.size.width, [MDTabBar defaultIndicatorHeight]);
                      }];
   } else {
     indicatorView.frame =
-        CGRectMake(frame.origin.x, self.bounds.size.height - kMDIndicatorHeight,
-                   frame.size.width, kMDIndicatorHeight);
+        CGRectMake(frame.origin.x, self.bounds.size.height - [MDTabBar defaultIndicatorHeight],
+                   frame.size.width, [MDTabBar defaultIndicatorHeight]);
   }
 }
 
@@ -404,6 +404,7 @@
 }
 
 static NSUInteger s_defaultTabBarHeight = 48;
+static NSUInteger s_defaultIndicatorHeight = 2;
 
 + (NSUInteger)defaultTabBarHeight
 {
@@ -413,6 +414,16 @@ static NSUInteger s_defaultTabBarHeight = 48;
 + (void)setDefaultTabBarHeight:(NSUInteger)height
 {
   s_defaultTabBarHeight = height;
+}
+
++ (NSUInteger)defaultIndicatorHeight
+{
+  return s_defaultIndicatorHeight;
+}
+
++ (void)setDefaultIndicatorHeight:(NSUInteger)height
+{
+  s_defaultIndicatorHeight = height;
 }
 
 - (instancetype)init {
