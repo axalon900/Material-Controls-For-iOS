@@ -297,8 +297,8 @@
           selectedTab.frame.size.width + xDriff / scrollViewWidth * widthDiff;
 
       CGRect frame =
-          CGRectMake(newOriginX, [MDTabBar defaultTabBarHeight] - kMDIndicatorHeight, newWidth,
-                     kMDIndicatorHeight);
+          CGRectMake(newOriginX, [MDTabBar defaultTabBarHeight] - [MDTabBar defaultIndicatorHeight], newWidth,
+                     [MDTabBar defaultIndicatorHeight]);
       [_tabBar moveIndicatorToFrame:frame withAnimated:NO];
 
     } else {
@@ -318,8 +318,8 @@
           selectedTab.frame.size.width + xDriff / scrollViewWidth * widthDiff;
 
       CGRect frame =
-          CGRectMake(newOriginX, [MDTabBar defaultTabBarHeight] - kMDIndicatorHeight, newWidth,
-                     kMDIndicatorHeight);
+          CGRectMake(newOriginX, [MDTabBar defaultTabBarHeight] - [MDTabBar defaultIndicatorHeight], newWidth,
+                     [MDTabBar defaultIndicatorHeight]);
       [_tabBar moveIndicatorToFrame:frame withAnimated:NO];
     }
   }
