@@ -479,7 +479,9 @@
 }
 
 - (void)removeFromSuperview {
-  [segmentedControl removeObserver:self forKeyPath:@"frame"];
+  if (self.superview) {
+    [segmentedControl removeObserver:self forKeyPath:@"frame"];
+  }
   [super removeFromSuperview];
 }
 
